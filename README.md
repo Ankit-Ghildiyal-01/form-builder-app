@@ -93,8 +93,6 @@ Two invariants live here. A hidden field is never required, enforced in one plac
 
 Chained conditions are allowed, so a conditional field can watch another conditional field. Resolution is a depth-first walk with memoisation, resolving each target before judging a rule so a hidden target contributes nothing even if it holds a stale value. A dependency cycle cannot be resolved meaningfully, so a guard detects one and falls back to the field's declared defaults rather than looping.
 
-A field cannot condition on itself: the picker excludes it and the resolver filters such a rule defensively, so a hand-edited template cannot misbehave. Deleting a field that other rules point at is refused until the user confirms, and the confirmation names the fields whose rules go with it.
-
 ### Component structure
 
 The config panel owns what every field type has: the label, required, default visibility, and conditional logic. It hands the rest to the field's own `ConfigEditor`. A module therefore only describes what makes it different, and cannot ship a label input that behaves differently from every other one.
@@ -102,8 +100,6 @@ The config panel owns what every field type has: the label, required, default vi
 `FillForm` is the only field renderer. It resolves visibility for the whole form in one pass, since a condition can point at another conditional field and the resolution has to see the entire graph, then renders each field through its module. Fill mode and the builder's preview both mount this one component, so a preview cannot drift from the real thing: conditional visibility, calculated values, required markers and error messages all come from the same code path. The preview's only difference is that it stores nothing.
 
 The builder edits a draft in component state and writes to storage only on Save. Reading through the store on every keystroke would fight the user for control of the input. A `beforeunload` guard catches closing the tab with unsaved work and arms only once there is something to lose. It does not catch in-app navigation, which is on the improvements list.
-
-Pages that display a record are keyed by that record's id, so navigating from one template to another remounts the page rather than asking it to reconcile two records inside one state object. That unmount is what discards an unsaved draft, which is why it is doing real work rather than being a detail to tidy away.
 
 ### Calculations
 
@@ -129,19 +125,14 @@ The screen version of a saved response renders from the same model, so what you 
 
 Hash routing, so refreshing a deep link works on any static host. Nothing on a static host rewrites a path back to `index.html`, but everything after the `#` never reaches the server anyway. Every URL the app can produce lives in `src/routes.ts` as one object of functions, so a path is never spelled out as a string at a call site and `<Link to={paths.builder(id)}>` stays compiler-checked.
 
-Replacing the original hand-written matcher with react-router-dom added about 13 kB gzipped, which was worth paying to stop maintaining a matcher of my own. It keeps the old lenient fallbacks, because a URL that worked before has to keep working: a bare `/templates/abc` and an unknown trailing segment both open the builder, and anything unrecognised lands on the list rather than a blank screen.
-
 ### Styling
 
 Plain CSS files, imported by the component that owns them, over design tokens in `index.css`. The tokens give you one place to change colour, radius, shadow and type scale, and they carry a dark mode block.
 
-The rule that keeps this from drifting is that a stylesheet is imported by the component that uses it, never by a page. That caught a real bug early: confirmation-dialog copy was styled in a page stylesheet but used by three pages, so a deep link straight to a response URL would have rendered the dialog unstyled.
 
 ## Type safety
 
 The field model is a discriminated union on `type`, and that one choice carries the whole design. Any `switch (field.type)` narrows to the exact config shape, so reading `field.rows` on a text field is a compile error instead of a runtime surprise. The project builds with `strict`, `noUnusedLocals`, `noUnusedParameters`, `verbatimModuleSyntax` and `erasableSyntaxOnly` on, and there is no `any`, no `@ts-ignore` and no `@ts-expect-error` anywhere in `src`.
-
-There are four type assertions in the codebase, each one line at a boundary the compiler cannot see through: narrowing `import.meta.glob`'s results in the registry, `JSON.parse` in the store, a select element's value back to its union in the conditions editor, and `relatedTarget` in the file input. Each one is either guarded by a shape check that runs first, or sits behind a list generated from the same table it is asserted against.
 
 ## What I would improve with more time
 
