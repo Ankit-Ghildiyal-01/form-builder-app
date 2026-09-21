@@ -92,4 +92,4 @@ Both halves compile, the helper is idiomatic, and clicking around finds nothing 
 
 The AND versus OR call behind the whole conditional engine, and every product decision in the README's list of cases the spec left open, were mine to make and then have written down. They were not defaults I inherited from generated code.
 
-The review pass was reading. Every bug above was found by reading for what the code assumes about the world outside it, not by asking a model whether the code was correct. On this project, asking a model to review its own output produced exactly one kind of result: a confident summary of what the code does, which is the part I already knew.
+The review pass was reading. Every bug above was found by reading for what the code assumes about the world outside it, not by asking a model whether the code was correct.
