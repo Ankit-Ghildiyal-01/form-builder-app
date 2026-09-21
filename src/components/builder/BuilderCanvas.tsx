@@ -85,7 +85,14 @@ export function BuilderCanvas({
       <div
         className={`canvas canvas--empty${drag ? ' canvas--dropping' : ''}`}
         onDragOver={(event) => {
-          if (drag) event.preventDefault()
+          if (!drag) return
+          event.preventDefault()
+          event.dataTransfer.dropEffect = drag.kind === 'new' ? 'copy' : 'move'
+          // An empty canvas is one drop zone with no row to sit before or after,
+          // so 0 is the only index it can mean. Without this the index stays null
+          // and `handleDrop` refuses the field, which is why dragging into an
+          // empty form used to do nothing while a click still worked.
+          setDropIndex(0)
         }}
         onDrop={handleDrop}
       >
