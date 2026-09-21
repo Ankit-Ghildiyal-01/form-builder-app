@@ -1,0 +1,11 @@
+.fill-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Sections are visual breaks, so they get more room around them than a
+   regular field does. */
+.fill-form > .field-shell:has(.section-header) {
+  margin-top: 6px;
+}

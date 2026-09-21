@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Design tokens + global reset
+   Everything visual is driven from here so components stay presentational.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #f7f7f9;
+  --surface: #ffffff;
+  --surface-2: #fafafb;
+  --surface-3: #f1f1f4;
+  --surface-hover: #f5f5f7;
+
+  /* Text */
+  --text: #1a1a21;
+  --text-muted: #6b6b7b;
+  --text-subtle: #9494a3;
+  --text-inverse: #ffffff;
+
+  /* Borders */
+  --border: #e4e4ea;
+  --border-strong: #d2d2dc;
+  --border-focus: #6d5ce7;
+
+  /* Accent */
+  --accent: #6d5ce7;
+  --accent-hover: #5d4bd6;
+  --accent-active: #4f3ec4;
+  --accent-soft: #efecfd;
+  --accent-soft-hover: #e6e1fb;
+  --accent-text: #4f3ec4;
+
+  /* Status */
+  --danger: #dc2f4a;
+  --danger-soft: #fdecef;
+  --danger-border: #f7c9d2;
+  --success: #10896b;
+  --success-soft: #e6f6f1;
+  --warning: #b06a00;
+  --warning-soft: #fdf3e3;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-full: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(16, 16, 28, 0.05);
+  --shadow-sm: 0 1px 3px rgba(16, 16, 28, 0.07), 0 1px 2px rgba(16, 16, 28, 0.04);
+  --shadow-md: 0 4px 12px rgba(16, 16, 28, 0.08), 0 1px 3px rgba(16, 16, 28, 0.04);
+  --shadow-lg: 0 12px 32px rgba(16, 16, 28, 0.12), 0 2px 8px rgba(16, 16, 28, 0.06);
+  --shadow-focus: 0 0 0 3px rgba(109, 92, 231, 0.18);
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Layout */
+  --topbar-h: 56px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e12;
+    --surface: #17171d;
+    --surface-2: #1c1c23;
+    --surface-3: #232330;
+    --surface-hover: #22222b;
+
+    --text: #f2f2f5;
+    --text-muted: #a0a0b0;
+    --text-subtle: #71717f;
+    --text-inverse: #12121a;
+
+    --border: #2a2a35;
+    --border-strong: #3a3a48;
+    --border-focus: #8b7cf0;
+
+    --accent: #8b7cf0;
+    --accent-hover: #9a8df3;
+    --accent-active: #a99df6;
+    --accent-soft: #241f3d;
+    --accent-soft-hover: #2d2750;
+    --accent-text: #b3a7f7;
+
+    --danger: #f2637c;
+    --danger-soft: #35181f;
+    --danger-border: #55222e;
+    --success: #34c19b;
+    --success-soft: #122b25;
+    --warning: #e0a23c;
+    --warning-soft: #302410;
+
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.35);
+    --shadow-focus: 0 0 0 3px rgba(139, 124, 240, 0.25);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--accent-text);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Print: the PDF export pipeline.
+   #print-root lives outside #root (see index.html) so the entire application
+   UI can be hidden with a single rule, leaving only the generated document.
+
+   The swap is gated on `html.print-export`, which usePrintExport sets for the
+   duration of an export. Applying it unconditionally would mean that pressing
+   Ctrl+P outside an export (on the templates list, say) printed a blank sheet
+   rather than the page the user was looking at.
+   ========================================================================== */
+
+#print-root {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  html.print-export #root {
+    display: none !important;
+  }
+
+  html.print-export #print-root {
+    display: block !important;
+  }
+}

@@ -1,0 +1,66 @@
+/* The radio list and its states come from shared.css, which is what keeps this
+   field's displays identical to the Multi Select checkboxes. This module owns
+   the tiles display and the notice shown when there are no options to pick. */
+
+.select-empty {
+  padding: 2px;
+  font-size: 13px;
+  color: var(--text-subtle);
+}
+
+/* ---- Tiles -------------------------------------------------------------- */
+
+.field-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 8px;
+}
+
+.field-tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-size: 13.5px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.14s var(--ease),
+    background-color 0.14s var(--ease),
+    box-shadow 0.14s var(--ease);
+}
+
+.field-tile:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+}
+
+.field-tile--selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 550;
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.field-tile--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.field-tile__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.field-tile__input:focus-visible ~ .field-tile__label {
+  text-decoration: underline;
+}

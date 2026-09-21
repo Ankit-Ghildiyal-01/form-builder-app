@@ -1,0 +1,125 @@
+.config-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.config-panel--empty {
+  justify-content: center;
+  padding: 24px 20px;
+}
+
+.config-panel__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+  color: var(--text-subtle);
+  text-align: center;
+}
+
+.config-panel__placeholder-title {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.config-panel__placeholder-text {
+  max-width: 220px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.config-panel__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.config-panel__type-icon {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--accent-soft-hover);
+  border-radius: var(--r-sm);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.config-panel__type-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.config-panel__header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 1px;
+}
+
+/* ---- Groups ------------------------------------------------------------- */
+
+.config-group {
+  border-bottom: 1px solid var(--border);
+}
+
+.config-group:last-child {
+  border-bottom: none;
+}
+
+.config-group__title {
+  padding: 14px 14px 0;
+  color: var(--text-subtle);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.config-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px 14px 18px;
+}
+
+/* ---- Aside -------------------------------------------------------------- */
+
+.config-panel__aside {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 9px 10px;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  color: var(--text-subtle);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.config-panel__aside svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}

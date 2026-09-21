@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Section Header.
+
+   A section is the only field with no control, so this file carries the whole
+   visual design of the type: the five `size` steps are five genuinely
+   different weights of heading, readable as a hierarchy at a glance without
+   reading the label text.
+
+   The steps are separated on four axes at once (size, weight, colour and the
+   presence of a dividing rule) because any one axis alone leaves two adjacent
+   steps looking interchangeable:
+
+     xs  small caps, muted: a whisper; subdivides a group already in view
+     sm  small caps, less muted: a quiet subheading
+     md  body-plus, strong: the default; the rule starts here
+     lg  large, bold: a clear group break
+     xl  display, bold: the top of the document's section hierarchy
+
+   Border colours deliberately escalate with the size (`--border` →
+   `--border-strong` → `--accent-soft-hover`) so the strength of the break
+   tracks the strength of the heading.
+   ========================================================================== */
+
+.section-header {
+  /* The shell already spaces fields apart; a heading's own margin would stack
+     on top of that and make sections sit unevenly against every other field. */
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  /* A long unbroken label must wrap rather than widen the form column. */
+  overflow-wrap: anywhere;
+}
+
+/* ---- XS: caption-like, muted, no rule ----------------------------------- */
+
+.section-header--xs {
+  font-size: 10.5px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+/* ---- Small: still caps and quiet, one step louder than XS ---------------- */
+
+.section-header--sm {
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- Medium: the default. Sentence case, body-plus, a hairline rule ------ */
+
+.section-header--md {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+/* ---- Large: a definite group break, with room for the rule to breathe ---- */
+
+.section-header--lg {
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-strong);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+/* ---- XL: the strongest break; tinted rule marks the top of a section ----- */
+
+.section-header--xl {
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-soft-hover);
+  font-size: 26px;
+  font-weight: 750;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}

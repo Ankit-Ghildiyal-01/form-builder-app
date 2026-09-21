@@ -1,0 +1,97 @@
+/* The drop zone, the file list and every state they can be in. Nothing here is
+   shared: a file field is the only thing that renders a drop target. */
+
+.field-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 22px 16px;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.14s var(--ease),
+    background-color 0.14s var(--ease),
+    color 0.14s var(--ease);
+}
+
+.field-drop:hover,
+.field-drop--active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.field-drop--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.field-drop__title {
+  font-weight: 550;
+}
+
+.field-drop__hint {
+  font-size: 11.5px;
+  color: var(--text-subtle);
+}
+
+.field-drop__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* A list reset merged into the shared column layout the class used to get from
+   shared.css: a <ul> brings its own markers and indent, which would push these
+   rows out of line with every other field's content. */
+.field-files {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.field-file {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.field-file__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 520;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field-file__meta {
+  flex: 0 0 auto;
+  font-size: 11.5px;
+  color: var(--text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The real focusable control is the visually-hidden file input, so the focus
+   ring has to be projected onto the zone that represents it, otherwise the
+   whole field looks unreachable from the keyboard. */
+.field-drop:focus-within {
+  border-color: var(--accent);
+}

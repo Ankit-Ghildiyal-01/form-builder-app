@@ -1,0 +1,26 @@
+/* The read-only result box. Only this field renders a derived value, so these
+   rules live here rather than in shared.css. */
+
+
+.field-readonly {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+}
+
+.field-readonly__value {
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.field-readonly__note {
+  font-size: 11.5px;
+  color: var(--text-subtle);
+}

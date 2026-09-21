@@ -1,0 +1,10 @@
+/* The checkbox list, its limit counter and every state it can be in come from
+   shared.css, which is why the two choice fields look identical. The one piece
+   unique to this module is the notice shown when the field has no options to
+   tick: no other field renders an empty palette into the fill form. */
+
+.multiselect-empty {
+  padding: 2px;
+  font-size: 13px;
+  color: var(--text-subtle);
+}

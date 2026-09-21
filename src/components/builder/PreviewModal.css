@@ -1,0 +1,85 @@
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.preview__passed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--success-border);
+  border-radius: var(--r-lg);
+  background: var(--success-soft);
+  color: var(--success);
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.preview__passed svg {
+  flex: 0 0 auto;
+}
+
+/* ---- Action bar --------------------------------------------------------- */
+
+/*
+ * The bar is the last child of the modal body rather than the modal's own
+ * footer slot, because the state it reports on lives in this component and
+ * hoisting it up would mean threading three pieces of state through a parent
+ * that has no other use for them.
+ *
+ * It sticks to the bottom of the scrolling body so the stats and the validation
+ * button stay reachable however long the form is. The negative margins cancel
+ * the body's own padding, which is what lets it sit flush against the edges.
+ */
+.preview__bar {
+  position: sticky;
+  bottom: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2px -20px -20px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.preview__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  color: var(--text-subtle);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.preview__stats strong {
+  color: var(--text-muted);
+  font-weight: 640;
+}
+
+.preview__stat--hidden,
+.preview__stat--hidden strong {
+  color: var(--warning);
+}
+
+.preview__bar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .preview__bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .preview__bar-actions {
+    justify-content: flex-end;
+  }
+}

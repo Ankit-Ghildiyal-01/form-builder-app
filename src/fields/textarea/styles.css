@@ -1,0 +1,15 @@
+/* ---- Row height ---------------------------------------------------------
+   The shared `.control--textarea` floor of 72px is taller than two rows of
+   this control actually measure, so a configured `rows` of 2 would render at
+   exactly the same height as 3, a setting the panel offers that has no
+   visible effect. Lowering the floor for this field's control lets the `rows`
+   attribute size the box, which is the whole point of exposing it.
+
+   58px is what the smallest configurable count measures (2 rows at the shared
+   control's 13.5px / 1.5 line-height, plus its padding and border), so the
+   floor stays at a legitimate height and `resize: vertical` cannot collapse
+   the box below one. The two classes out-specify `.control--textarea` so the
+   rule holds regardless of stylesheet load order. */
+.control--textarea.field-textarea {
+  min-height: 58px;
+}

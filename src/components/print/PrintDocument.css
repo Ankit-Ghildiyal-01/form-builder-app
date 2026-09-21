@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Print document styling.
+
+   Literal colours, not theme tokens: an exported PDF must be black on white
+   even when the person exporting it is using dark mode.
+   ========================================================================== */
+
+.print-doc {
+  display: block;
+  max-width: 190mm;
+  margin: 0 auto;
+  color: #111111;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.print-doc__header {
+  padding-bottom: 12pt;
+  margin-bottom: 18pt;
+  border-bottom: 2pt solid #111111;
+}
+
+.print-doc__eyebrow {
+  margin: 0 0 6pt;
+  color: #55555f;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.print-doc__title {
+  margin: 0 0 6pt;
+  color: #000000;
+  font-size: 21pt;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.print-doc__meta {
+  margin: 0;
+  color: #55555f;
+  font-size: 9.5pt;
+}
+
+/* ---- Body --------------------------------------------------------------- */
+
+.print-doc__body {
+  margin: 0;
+}
+
+.print-doc__row {
+  display: grid;
+  grid-template-columns: 46mm 1fr;
+  gap: 8mm;
+  padding: 7pt 0;
+  border-bottom: 0.5pt solid #e2e2e6;
+  /* Never split a label from its value across a page break. */
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.print-doc__label {
+  color: #55555f;
+  font-size: 9.5pt;
+  font-weight: 600;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.print-doc__value {
+  margin: 0;
+  color: #111111;
+  font-size: 10.5pt;
+  overflow-wrap: anywhere;
+}
+
+/* Answers typed across multiple lines keep their line breaks. */
+.print-doc__value--block {
+  white-space: pre-wrap;
+}
+
+/* ---- Inline section headings -------------------------------------------- */
+
+.print-doc__section {
+  margin: 20pt 0 4pt;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.print-doc__section:first-child {
+  margin-top: 0;
+}
+
+.print-doc__section-title {
+  margin: 0;
+  padding-bottom: 3pt;
+  border-bottom: 1pt solid #111111;
+  color: #000000;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.print-doc__section-title--xl {
+  font-size: 16pt;
+  letter-spacing: -0.01em;
+}
+
+.print-doc__section-title--lg {
+  font-size: 14pt;
+}
+
+.print-doc__section-title--md {
+  font-size: 12pt;
+}
+
+.print-doc__section-title--sm {
+  font-size: 10.5pt;
+}
+
+.print-doc__section-title--xs {
+  font-size: 8.5pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #55555f;
+  border-bottom-color: #c9c9d0;
+}
+
+/* ---- Notes and footer --------------------------------------------------- */
+
+.print-doc__notes {
+  margin-top: 18pt;
+  padding: 9pt 11pt;
+  border: 0.5pt solid #d8d8de;
+  border-left: 2.5pt solid #55555f;
+  border-radius: 2pt;
+  background: #f6f6f8;
+}
+
+.print-doc__note {
+  margin: 0;
+  color: #44444e;
+  font-size: 8.5pt;
+  line-height: 1.5;
+}
+
+.print-doc__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10mm;
+  margin-top: 22pt;
+  padding-top: 7pt;
+  border-top: 0.5pt solid #d8d8de;
+  color: #77777f;
+  font-size: 8pt;
+}
+
+/* An empty form still produces a legible page rather than a blank sheet. */
+.print-doc__body:empty::after {
+  content: 'This form has no visible fields.';
+  display: block;
+  padding: 14pt 0;
+  color: #77777f;
+  font-style: italic;
+}

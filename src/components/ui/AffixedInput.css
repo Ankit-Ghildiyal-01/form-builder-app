@@ -1,0 +1,69 @@
+.affix {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 34px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  overflow: hidden;
+  transition:
+    border-color 0.14s var(--ease),
+    box-shadow 0.14s var(--ease);
+}
+
+.affix:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-focus);
+}
+
+.affix--invalid,
+.affix--invalid:focus-within {
+  border-color: var(--danger);
+}
+
+.affix--invalid:focus-within {
+  box-shadow: 0 0 0 3px rgba(220, 47, 74, 0.16);
+}
+
+.affix--disabled {
+  background: var(--surface-3);
+}
+
+.affix__addon {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  padding: 0 10px;
+  border-right: 1px solid var(--border);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.affix__addon--suffix {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+.affix__control {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* The inner control becomes a bare text region inside the group. */
+.affix__control .control,
+.affix__control .control:hover,
+.affix__control .control:focus {
+  height: auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.affix__control textarea.control {
+  min-height: 68px;
+}

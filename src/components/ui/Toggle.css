@@ -1,0 +1,81 @@
+.toggle {
+  display: block;
+}
+
+.toggle--disabled {
+  opacity: 0.55;
+}
+
+/* Visually hidden but focusable and announced. */
+.toggle__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle__label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle--disabled .toggle__label {
+  cursor: not-allowed;
+}
+
+.toggle__track {
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: var(--r-full);
+  background: var(--border-strong);
+  transition: background-color 0.18s var(--ease);
+}
+
+.toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.18s var(--ease);
+}
+
+.toggle__input:checked + .toggle__label .toggle__track {
+  background: var(--accent);
+}
+
+.toggle__input:checked + .toggle__label .toggle__thumb {
+  transform: translateX(14px);
+}
+
+.toggle__input:focus-visible + .toggle__label .toggle__track {
+  box-shadow: var(--shadow-focus);
+}
+
+.toggle__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.toggle__title {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.toggle__hint {
+  font-size: 12px;
+  color: var(--text-subtle);
+  line-height: 1.35;
+}

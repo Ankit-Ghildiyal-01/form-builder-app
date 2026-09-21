@@ -1,0 +1,140 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 16, 28, 0.45);
+  backdrop-filter: blur(2px);
+  animation: modal-fade 0.16s var(--ease);
+}
+
+.modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 88vh;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  animation: modal-rise 0.18s var(--ease);
+}
+
+.modal__dialog:focus {
+  outline: none;
+}
+
+.modal__dialog--md {
+  max-width: 520px;
+}
+
+.modal__dialog--lg {
+  max-width: 720px;
+}
+
+.modal__dialog--xl {
+  max-width: 900px;
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.modal__title {
+  font-size: 16px;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+.modal__description {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.modal__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---- Confirmation copy -------------------------------------------------- */
+
+/*
+ * The body copy of a confirmation dialog. It lives here rather than in a page
+ * stylesheet because every consumer of a modal already loads this file, and a
+ * page-scoped rule would leave the dialog unstyled when its page is reached by
+ * a deep link and the other page's stylesheet was never fetched.
+ */
+
+.confirm-copy {
+  color: var(--text-muted);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.confirm-copy strong {
+  color: var(--text);
+}
+
+.confirm-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  list-style: none;
+}
+
+@keyframes modal-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal__backdrop,
+  .modal__dialog {
+    animation: none;
+  }
+}

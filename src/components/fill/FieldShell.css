@@ -1,0 +1,41 @@
+.field-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-shell__label {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 13.5px;
+  font-weight: 560;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.field-shell__label-text {
+  overflow-wrap: anywhere;
+}
+
+.field-shell__required {
+  color: var(--danger);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.field-shell__error {
+  font-size: 12.5px;
+  color: var(--danger);
+  line-height: 1.45;
+}
+
+/* Give the control a ring when its own validation failed, for controls that do
+   not render a bordered box of their own (radio lists, tiles, drop zones). */
+.field-shell--invalid .field-options,
+.field-shell--invalid .field-tiles {
+  padding: 6px;
+  margin: -6px;
+  border-radius: var(--r-md);
+  outline: 1px solid var(--danger-border);
+}

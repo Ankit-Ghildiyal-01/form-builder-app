@@ -1,0 +1,176 @@
+.builder-missing {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 26px 20px 72px;
+}
+
+/*
+ * The three-pane layout. `AppShell` in `flush` mode gives us a full-height,
+ * non-scrolling main region, so each pane owns its own scrollbar and the top
+ * bar stays put while a long form scrolls under it.
+ */
+.builder {
+  display: flex;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.builder__palette {
+  flex: 0 0 250px;
+  min-width: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.builder__canvas {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 20px 22px 90px;
+  overflow-y: auto;
+}
+
+.builder__config {
+  display: flex;
+  flex: 0 0 330px;
+  min-width: 0;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ---- Form identity ------------------------------------------------------ */
+
+.builder__meta {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/*
+ * The title and description are deliberately not the shared `.control` input.
+ * They are not a field with a label and a validation state. They are the
+ * form's own name, edited in place, so they get borderless treatment with an
+ * underline that appears on hover to signal they are editable.
+ */
+.builder__title-input,
+.builder__description-input {
+  width: 100%;
+  padding: 2px 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.builder__title-input {
+  font-size: 17px;
+  font-weight: 640;
+  letter-spacing: -0.015em;
+}
+
+.builder__description-input {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.builder__title-input::placeholder,
+.builder__description-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.builder__title-input:hover,
+.builder__description-input:hover {
+  border-bottom-color: var(--border);
+}
+
+.builder__title-input:focus,
+.builder__description-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.builder__meta-count {
+  margin-top: 12px;
+  color: var(--text-subtle);
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Save status -------------------------------------------------------- */
+
+.builder__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.builder__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.builder__status--dirty {
+  color: var(--warning);
+}
+
+.builder__status--dirty .builder__status-dot {
+  background: var(--warning);
+}
+
+/* Why Save will refuse. Outranks the dirty state: it is the blocker. */
+.builder__status--blocked {
+  color: var(--danger);
+}
+
+.builder__status--blocked .builder__status-dot {
+  background: var(--danger);
+}
+
+/* ---- Narrow screens ----------------------------------------------------- */
+
+/*
+ * Three side-by-side panes need roughly 1000px to stay usable. Below that they
+ * stack into one scrolling column rather than squeezing every pane to the point
+ * where the palette's descriptions wrap on every word.
+ */
+@media (max-width: 1080px) {
+  .builder {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .builder__palette {
+    flex: 0 0 auto;
+    max-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .builder__canvas {
+    flex: 0 0 auto;
+    overflow: visible;
+    padding: 18px 20px 24px;
+  }
+
+  .builder__config {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--border);
+    border-left: none;
+  }
+}

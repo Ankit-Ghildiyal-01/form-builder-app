@@ -1,0 +1,135 @@
+.conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.conditions__empty {
+  padding: 11px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  color: var(--text-subtle);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.conditions__note {
+  color: var(--text-subtle);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.conditions__note strong {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ---- Rule card ---------------------------------------------------------- */
+
+.condition {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.condition__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 1px;
+}
+
+.condition__index {
+  color: var(--text-subtle);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.condition__line {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: center;
+  gap: 6px;
+}
+
+.condition__step {
+  color: var(--text-subtle);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.condition__value {
+  min-width: 0;
+}
+
+.condition__range {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.condition__options {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-height: 168px;
+  overflow-y: auto;
+  padding: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.condition__option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+
+.condition__option:hover {
+  background: var(--surface-hover);
+}
+
+.condition__option .field-option__control {
+  margin-top: 1px;
+}
+
+.condition__option .field-option__label {
+  font-size: 12.5px;
+}
+
+.condition__hint {
+  color: var(--text-subtle);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.condition__missing {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 8px 9px;
+  border: 1px solid var(--danger-border);
+  border-radius: var(--r-md);
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.condition__missing svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
