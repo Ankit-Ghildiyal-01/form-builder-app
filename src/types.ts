@@ -223,8 +223,6 @@ export interface FormInstance {
   submittedAt: string
 }
 
-export const STORAGE_VERSION = 1
-
 export interface StorageSchema {
   version: number
   templates: FormTemplate[]

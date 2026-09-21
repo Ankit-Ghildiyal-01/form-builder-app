@@ -13,12 +13,8 @@
  */
 
 import { useMemo, useSyncExternalStore } from 'react'
-import {
-  STORAGE_VERSION,
-  type FormInstance,
-  type FormTemplate,
-  type StorageSchema,
-} from '../types'
+import type { FormInstance, FormTemplate, StorageSchema } from '../types'
+import { STORAGE_VERSION } from './constants'
 import { createId } from './id'
 
 const STORAGE_KEY = 'form-builder:v1'

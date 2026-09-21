@@ -15,6 +15,7 @@ import { createId } from '../lib/id'
 import { createTemplate, saveTemplate, useTemplate } from '../lib/store'
 import { pruneCalculationSources } from '../lib/values'
 import { DRAFT_TEMPLATE_ID, paths } from '../routes'
+import { FORM_DESCRIPTION_MAX_LENGTH, FORM_TITLE_MAX_LENGTH } from '../lib/constants'
 import type { FieldConfig, FieldId, FieldType, FormTemplate } from '../types'
 import './BuilderPage.css'
 
@@ -273,6 +274,7 @@ export function BuilderPage({ templateId }: BuilderPageProps) {
               value={draft.title}
               placeholder="Untitled form"
               aria-label="Form title"
+              maxLength={FORM_TITLE_MAX_LENGTH}
               onChange={(event) => update({ ...draft, title: event.target.value })}
             />
             <input
@@ -280,6 +282,7 @@ export function BuilderPage({ templateId }: BuilderPageProps) {
               value={draft.description}
               placeholder="Add a description to explain what this form is for"
               aria-label="Form description"
+              maxLength={FORM_DESCRIPTION_MAX_LENGTH}
               onChange={(event) => update({ ...draft, description: event.target.value })}
             />
             <p className="builder__meta-count">

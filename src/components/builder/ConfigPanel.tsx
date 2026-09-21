@@ -4,6 +4,7 @@ import { FormRow, Segmented, TextInput } from '../ui/Controls'
 import { Icon } from '../ui/Icon'
 import { Toggle } from '../ui/Toggle'
 import { getDefinition } from '../../fields/registry'
+import { FIELD_LABEL_MAX_LENGTH } from '../../lib/constants'
 import type { FieldConfig } from '../../types'
 import { ConditionsEditor } from './ConditionsEditor'
 import './ConfigPanel.css'
@@ -102,6 +103,7 @@ export function ConfigPanel({
             id={`config-label-${field.id}`}
             value={field.label}
             placeholder="Field label"
+            maxLength={FIELD_LABEL_MAX_LENGTH}
             onChange={(event) => setLabel(event.target.value)}
           />
         </FormRow>
