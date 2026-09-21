@@ -221,13 +221,12 @@ export function BuilderPage({ templateId }: BuilderPageProps) {
       return
     }
 
-    const saved = saveTemplate(draft)
-    setDraft(saved)
-    setDirty(false)
+    saveTemplate(draft)
 
-    // A new form now has a real id, so move to its permanent address. This
-    // remounts the builder with the saved record already in the store.
-    if (isNew) navigate(paths.builder(saved.id))
+    // Saving ends the editing session, so land back on the grid rather than
+    // staying in the builder. The form just saved is the first card there, since
+    // the grid is ordered by save time.
+    navigate(paths.templates)
   }
 
   const saveBlocker = saveBlockerFor(titleMissing, unlabelledFields.length)

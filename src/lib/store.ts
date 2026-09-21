@@ -140,14 +140,16 @@ export function useStore(): StorageSchema {
 }
 
 /**
- * Every template, oldest first, so the grid is stable: ordering by last edit
- * reshuffles the cards whenever one is opened or saved, moving the one you were
- * about to click.
+ * Every template, most recently saved first, so the form you just saved is the
+ * first card when you land back on the grid.
+ *
+ * Ordered by `updatedAt`, which only `saveTemplate` writes. Opening a form leaves
+ * it where it is, so browsing does not reshuffle the list under you.
  */
 export function useTemplates(): FormTemplate[] {
   const schema = useStore()
   return useMemo(
-    () => [...schema.templates].sort((a, b) => a.createdAt.localeCompare(b.createdAt)),
+    () => [...schema.templates].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)),
     [schema],
   )
 }

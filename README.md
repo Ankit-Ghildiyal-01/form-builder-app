@@ -19,9 +19,9 @@ The dev server prints a local URL.
 
 ## What it does
 
-Templates is the home screen: a grid of every form you have made, oldest first, each showing its field count, how many responses it has, and when it was last modified.
+Templates is the home screen: a grid of every form you have made, most recently saved first, each showing its field count, how many responses it has, and when it was last modified.
 
-The builder has three panes. A palette of field types on the left, the ordered list of fields in the middle, and the configuration panel for the selected field on the right. Click a palette entry to append it, or drag it to place it precisely. Save refuses while the form has no title or a field has no label, and clicking Save selects the first offender and puts the cursor in its label input. Preview opens the real fill experience in a modal.
+The builder has three panes. A palette of field types on the left, the ordered list of fields in the middle, and the configuration panel for the selected field on the right. Click a palette entry to append it, or drag it to place it precisely. Save refuses while the form has no title or a field has no label, and clicking Save selects the first offender and puts the cursor in its label input. Saving returns you to the grid, with the form you just saved as the first card. Preview opens the real fill experience in a modal.
 
 Fill mode is the live form. Conditional logic shows and hides fields as you answer, calculations update on every keystroke, and validation runs on submit.
 
